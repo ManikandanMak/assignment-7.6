@@ -1,0 +1,11 @@
+a = load '/home/acadgild/Downloads/olympix_data.csv' using PigStorage(',') AS ('athelete:chararray,age:int,country:chararray,year:chararray,closing:chararray,sport:chararray,gold:int,silver:int,bronze:int,total:int');
+
+DEFINE filter_op2(a,age) returns z{ $z = filter a by age >45;};
+b = filter_op2(a,age);
+dump b;
+DEFINE filter_op4(a,sport) returns z { $z = filter a by sport == archery;};
+d = filter_op2(a,sport);
+dump d;
+DEFINE filter_op4(year) returns z { Y = filter a by country == India; $Z = foreach Y generate COUNT($year);};
+e = filter_op2(year);
+dump e;
